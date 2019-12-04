@@ -29,6 +29,7 @@ class GildedRoseTests: XCTestCase {
     let backstagePassItem4 = Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 0, quality: 47)
     let conjuredItem1 = Item(name: "Conjured Mana Cake", sellIn: 3, quality: 6)
     let conjuredItem2 = Item(name: "Conjured Mana Cake", sellIn: 0, quality:50)
+    let conjuredItem3 = Item(name: "Conjured Mana Cake", sellIn: 1, quality: 1)
     
     var items: [Item] = []
     
@@ -49,7 +50,8 @@ class GildedRoseTests: XCTestCase {
                  backstagePassItem3,
                  backstagePassItem4,
                  conjuredItem1,
-                 conjuredItem2]
+                 conjuredItem2,
+                 conjuredItem3]
         
         app  = GildedRose(items: items)
     }
@@ -97,7 +99,7 @@ class GildedRoseTests: XCTestCase {
         XCTAssertEqual(app.items[1].sellIn, 0)
     }
     
-    func testUpdateQuality_ItemQualityAlwaysPositive() {
+    func testUpdateQuality_ItemQuality_IsNeverNegative() {
         app.updateQuality()
         XCTAssertGreaterThanOrEqual(app.items[0].quality, 0)
     }
@@ -169,6 +171,11 @@ class GildedRoseTests: XCTestCase {
     func testUpdateQuality_ConjuredItemQuality_NeverAbove50() {
         app.updateQuality()
         XCTAssertLessThanOrEqual(app.items[14].quality, 50)
+    }
+    
+    func testUpdateQuality_ConjuredItemQuality_IsNeverNegative() {
+        app.updateQuality()
+        XCTAssertGreaterThanOrEqual(app.items[15].quality, 0)
     }
     
 }
