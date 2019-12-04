@@ -20,8 +20,7 @@ class GildedRoseTests: XCTestCase {
     }
 
     func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        XCTAssertTrue(true, "True passes.")
     }
 
     func testPerformanceExample() {
@@ -31,11 +30,32 @@ class GildedRoseTests: XCTestCase {
         }
     }
     
+    func testItem_HasNameValue() {
+        let item = Item(name: "foo", sellIn: 0, quality: 0)
+        XCTAssertNotNil(item.name)
+    }
+    
+    func testItem_HasSellInValue() {
+        let item = Item(name: "foo", sellIn: 0, quality: 0)
+        XCTAssertNotNil(item.sellIn)
+    }
+    
+    func testItem_HasQualityValue() {
+        let item = Item(name: "foo", sellIn: 0, quality: 0)
+        XCTAssertNotNil(item.quality)
+    }
+    
+    func testItem_SetDescription() {
+        let item = Item(name: "foo", sellIn: 0, quality: 0)
+        XCTAssertEqual("foo, 0, 0", item.description)
+    }
+    
     func testUpdateQuality_ItemNameDoesNotChange() {
         let items = [Item(name: "foo", sellIn: 0, quality: 0)]
         let app = GildedRose(items: items);
         app.updateQuality();
         XCTAssertEqual("foo", app.items[0].name);
     }
-
+    
+    
 }
