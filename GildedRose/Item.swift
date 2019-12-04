@@ -24,3 +24,18 @@ extension Item: CustomStringConvertible {
         return self.name + ", " + String(self.sellIn) + ", " + String(self.quality);
     }
 }
+
+extension Item {
+    public func updateQuality(by quantity: Int) {
+        self.quality += quantity
+        
+        guard self.quality >= 0 else {
+            self.quality = 0
+            return
+        }
+    }
+    
+    public func updateSellIn(by quantity: Int) {
+        self.sellIn += quantity
+    }
+}
