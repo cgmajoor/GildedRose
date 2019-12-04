@@ -14,6 +14,10 @@
 		4AFB6A4E2397CF7C0063D66B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AFB6A4D2397CF7C0063D66B /* Assets.xcassets */; };
 		4AFB6A512397CF7C0063D66B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AFB6A4F2397CF7C0063D66B /* LaunchScreen.storyboard */; };
 		4AFB6A5C2397CF7C0063D66B /* GildedRoseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFB6A5B2397CF7C0063D66B /* GildedRoseTests.swift */; };
+		4AFB6A672397CF950063D66B /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFB6A662397CF950063D66B /* Item.swift */; };
+		4AFB6A682397CF950063D66B /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFB6A662397CF950063D66B /* Item.swift */; };
+		4AFB6A6A2397CFAC0063D66B /* GildedRose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFB6A692397CFAC0063D66B /* GildedRose.swift */; };
+		4AFB6A6B2397CFAC0063D66B /* GildedRose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFB6A692397CFAC0063D66B /* GildedRose.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +42,8 @@
 		4AFB6A572397CF7C0063D66B /* GildedRoseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GildedRoseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AFB6A5B2397CF7C0063D66B /* GildedRoseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GildedRoseTests.swift; sourceTree = "<group>"; };
 		4AFB6A5D2397CF7C0063D66B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4AFB6A662397CF950063D66B /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		4AFB6A692397CFAC0063D66B /* GildedRose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GildedRose.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +92,8 @@
 				4AFB6A4D2397CF7C0063D66B /* Assets.xcassets */,
 				4AFB6A4F2397CF7C0063D66B /* LaunchScreen.storyboard */,
 				4AFB6A522397CF7C0063D66B /* Info.plist */,
+				4AFB6A662397CF950063D66B /* Item.swift */,
+				4AFB6A692397CFAC0063D66B /* GildedRose.swift */,
 			);
 			path = GildedRose;
 			sourceTree = "<group>";
@@ -200,8 +208,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AFB6A672397CF950063D66B /* Item.swift in Sources */,
 				4AFB6A492397CF7B0063D66B /* ViewController.swift in Sources */,
 				4AFB6A452397CF7B0063D66B /* AppDelegate.swift in Sources */,
+				4AFB6A6A2397CFAC0063D66B /* GildedRose.swift in Sources */,
 				4AFB6A472397CF7B0063D66B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -210,6 +220,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AFB6A682397CF950063D66B /* Item.swift in Sources */,
+				4AFB6A6B2397CFAC0063D66B /* GildedRose.swift in Sources */,
 				4AFB6A5C2397CF7C0063D66B /* GildedRoseTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
