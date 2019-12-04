@@ -11,8 +11,47 @@ import XCTest
 
 class GildedRoseTests: XCTestCase {
     
+    var app: GildedRose!
+    
+    // MARK: Inventory of Items
+    let normalItem = Item(name: "foo", sellIn: 0, quality: 0)
+    let normalItem2 = Item(name: "foo", sellIn: 1, quality: 0)
+    let normalItem3 = Item(name: "foo", sellIn: 1, quality: 1)
+    let normalItem4 = Item(name: "foo", sellIn: -1, quality: 2)
+    let normalItem5 = Item(name: "foo", sellIn: 2, quality: 50)
+    let agedBrieItem = Item(name: "Aged Brie", sellIn: 2, quality: 0)
+    let agedBrieItem2 = Item(name: "Aged Brie", sellIn: 2, quality: 50)
+    let legendaryItemSulfuras = Item(name: "Sulfuras, Hand of Ragnaros", sellIn: 0, quality: 80)
+    let legendaryItemSulfuras2 = Item(name: "Sulfuras, Hand of Ragnaros", sellIn: -1, quality: 80)
+    let backstagePassItem = Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 14, quality: 21)
+    let backstagePassItem2 = Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 10, quality: 25)
+    let backstagePassItem3 = Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 5, quality: 35)
+    let backstagePassItem4 = Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 0, quality: 47)
+    let conjuredItem1 = Item(name: "Conjured Mana Cake", sellIn: 3, quality: 6)
+    let conjuredItem2 = Item(name: "Conjured Mana Cake", sellIn: 0, quality:50)
+    
+    var items: [Item] = []
+    
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        super.setUp()
+        
+        items = [normalItem,
+                 normalItem2,
+                 normalItem3,
+                 normalItem4,
+                 normalItem5,
+                 agedBrieItem,
+                 agedBrieItem2,
+                 legendaryItemSulfuras,
+                 legendaryItemSulfuras2,
+                 backstagePassItem,
+                 backstagePassItem2,
+                 backstagePassItem3,
+                 backstagePassItem4,
+                 conjuredItem1,
+                 conjuredItem2]
+        
+        app  = GildedRose(items: items)
     }
     
     override func tearDown() {
@@ -30,135 +69,106 @@ class GildedRoseTests: XCTestCase {
         }
     }
     
+    // MARK: Initial Values
     func testItem_HasNameValue() {
-        let item = Item(name: "foo", sellIn: 0, quality: 0)
-        XCTAssertNotNil(item.name)
+        XCTAssertNotNil(normalItem.name)
     }
     
     func testItem_HasSellInValue() {
-        let item = Item(name: "foo", sellIn: 0, quality: 0)
-        XCTAssertNotNil(item.sellIn)
+        XCTAssertNotNil(normalItem.sellIn)
     }
     
     func testItem_HasQualityValue() {
-        let item = Item(name: "foo", sellIn: 0, quality: 0)
-        XCTAssertNotNil(item.quality)
+        XCTAssertNotNil(normalItem.quality)
     }
     
     func testItem_SetDescription() {
-        let item = Item(name: "foo", sellIn: 0, quality: 0)
-        XCTAssertEqual("foo, 0, 0", item.description)
+        XCTAssertEqual("foo, 0, 0", normalItem.description)
     }
     
+    // MARK: Update Quality - Normal Items
     func testUpdateQuality_ItemNameDoesNotChange() {
-        let items = [Item(name: "foo", sellIn: 0, quality: 0)]
-        let app = GildedRose(items: items)
         app.updateQuality()
         XCTAssertEqual("foo", app.items[0].name);
     }
     
     func testUpdateQuality_SystemLowersSellInValueByOne() {
-        let items = [Item(name: "foo", sellIn: 1, quality: 0)]
-        let app = GildedRose(items: items)
         app.updateQuality()
-        XCTAssertEqual(app.items[0].sellIn, 0)
+        XCTAssertEqual(app.items[1].sellIn, 0)
     }
     
     func testUpdateQuality_ItemQualityAlwaysPositive() {
-        let items = [Item(name: "foo", sellIn: 0, quality: 0)]
-        let app = GildedRose(items: items)
         app.updateQuality()
         XCTAssertGreaterThanOrEqual(app.items[0].quality, 0)
     }
     
     func testUpdateQuality_NormalItemQualityDegradesByOne() {
-        let items = [Item(name: "foo", sellIn: 1, quality: 1)]
-        let app = GildedRose(items: items)
         app.updateQuality()
-        XCTAssertEqual(app.items[0].quality, 0)
+        XCTAssertEqual(app.items[2].quality, 0)
     }
     
     func testUpdateQuality_QualityDegradesTwiceAsFast_OnceSellByDatePassed() {
-        let items = [Item(name: "foo", sellIn: -1, quality: 2)]
-        let app = GildedRose(items: items)
         app.updateQuality()
-        XCTAssertEqual(app.items[0].quality, 0)
-    }
-    
-    func testUpdateQuality_SpecialItemAgedBrieQualityIncreases() {
-        let items = [Item(name: "Aged Brie", sellIn: 2, quality: 0)]
-        let app = GildedRose(items: items)
-        app.updateQuality()
-        XCTAssertEqual(app.items[0].quality, 1)
+        XCTAssertEqual(app.items[3].quality, 0)
     }
     
     func testUpdateQuality_NormalItemQuality_LessThanOrEqualTo50() {
-        let items = [Item(name: "foo", sellIn: 2, quality: 50)]
-        let app = GildedRose(items: items)
         app.updateQuality()
-        XCTAssertLessThanOrEqual(app.items[0].quality, 50)
+        XCTAssertLessThanOrEqual(app.items[4].quality, 50)
     }
     
-    func testUpdateQuality_LegendaryItemSulfurasIsNotSold_SellInValueDoesNotChange() {
-        let items = [Item(name: "Sulfuras, Hand of Ragnaros", sellIn: 0, quality: 80)]
-        let app = GildedRose(items: items)
+    // MARK: Update Quality - Aged Brie
+    func testUpdateQuality_AgedBrieQualityIncreases() {
         app.updateQuality()
-        XCTAssertEqual(app.items[0].sellIn, 0)
+        XCTAssertEqual(app.items[5].quality, 1)
+    }
+    
+    func testUpdateQuality_AgedBrieQuality_DoesNotIncreaseAbove50() {
+        app.updateQuality()
+        XCTAssertLessThanOrEqual(app.items[6].quality, 50)
+    }
+    
+    // MARK: Update Quality - Legendary Item Sulfuras
+    func testUpdateQuality_LegendaryItemSulfurasIsNotSold_SellInValueDoesNotChange() {
+        app.updateQuality()
+        XCTAssertEqual(app.items[7].sellIn, 0)
     }
     
     func testUpdateQuality_LegendaryItemSulfurasQualityValueIs80AndDoesNotChange() {
-        let items = [Item(name: "Sulfuras, Hand of Ragnaros", sellIn: -1, quality: 80)]
-        let app = GildedRose(items: items)
         app.updateQuality()
-        XCTAssertEqual(app.items[0].quality, 80)
+        XCTAssertEqual(app.items[8].quality, 80)
     }
     
-    func testUpdateQuality_SpecialItemAgedBrieQuality_DoesNotIncreaseAbove50() {
-        let items = [Item(name: "Aged Brie", sellIn: 2, quality: 50)]
-        let app = GildedRose(items: items)
-        app.updateQuality()
-        XCTAssertLessThanOrEqual(app.items[0].quality, 50)
-    }
-    
+    // MARK: Update Quality - Backstage Pass
     func testUpdateQuality_SpecialItemBackstagePasses_QualityIncreases() {
-        let items = [Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 14, quality: 21)]
-        let app = GildedRose(items: items)
         app.updateQuality()
-        XCTAssertEqual(app.items[0].quality, 22)
+        XCTAssertEqual(app.items[9].quality, 22)
     }
     
     func testUpdateQuality_SpecialItemBackstagePasses_QualityIncreasesBy2_SellInLessThanOrEqualTo10() {
-        let items = [Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 10, quality: 25)]
-        let app = GildedRose(items: items)
         app.updateQuality()
-        XCTAssertEqual(app.items[0].quality, 27)
+        XCTAssertEqual(app.items[10].quality, 27)
     }
     
     func testUpdateQuality_SpecialItemBackstagePasses_QualityIncreasesBy3_SellInLessThanOrEqualTo5() {
-        let items = [Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 5, quality: 35)]
-        let app = GildedRose(items: items)
         app.updateQuality()
-        XCTAssertEqual(app.items[0].quality, 38)
+        XCTAssertEqual(app.items[11].quality, 38)
     }
     
     func testUpdateQuality_SpecialItemBackstagePasses_Quality0_AfterConcert() {
-        let items = [Item(name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 0, quality: 47)]
-        let app = GildedRose(items: items)
         app.updateQuality()
-        XCTAssertEqual(app.items[0].quality, 0)
+        XCTAssertEqual(app.items[12].quality, 0)
     }
     
+    // MARK: Update Quality Conjured Item
     func testUpdateQuality_ConjuredItemQuality_DegradesTwiceAsFastAsNormalItems() {
-        let items = [Item(name: "Conjured Mana Cake", sellIn: 3, quality: 6)]
-        let app = GildedRose(items: items)
         app.updateQuality()
-        XCTAssertEqual(app.items[0].quality, 4)
+        XCTAssertEqual(app.items[13].quality, 4)
     }
     
     func testUpdateQuality_ConjuredItemQuality_NeverAbove50() {
-        let items = [Item(name: "Conjured Mana Cake", sellIn: 0, quality:50)]
-        let app = GildedRose(items: items)
         app.updateQuality()
-        XCTAssertLessThanOrEqual(app.items[0].quality, 50)
+        XCTAssertLessThanOrEqual(app.items[14].quality, 50)
     }
+    
 }
