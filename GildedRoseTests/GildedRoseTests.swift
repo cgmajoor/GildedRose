@@ -10,19 +10,19 @@ import XCTest
 @testable import GildedRose
 
 class GildedRoseTests: XCTestCase {
-
+    
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
-
+    
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
+    
     func testExample() {
         XCTAssertTrue(true, "True passes.")
     }
-
+    
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {
@@ -156,9 +156,9 @@ class GildedRoseTests: XCTestCase {
     }
     
     func testUpdateQuality_ConjuredItemQuality_NeverAbove50() {
-           let items = [Item(name: "Conjured Mana Cake", sellIn: 0, quality:50)]
-           let app = GildedRose(items: items)
-           app.updateQuality()
-           XCTAssertLessThanOrEqual(app.items[0].quality, 50)
-       }
+        let items = [Item(name: "Conjured Mana Cake", sellIn: 0, quality:50)]
+        let app = GildedRose(items: items)
+        app.updateQuality()
+        XCTAssertLessThanOrEqual(app.items[0].quality, 50)
+    }
 }
