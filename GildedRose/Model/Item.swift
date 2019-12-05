@@ -26,16 +26,11 @@ extension Item: CustomStringConvertible {
 }
 
 extension Item {
-    public func updateQuality(by quantity: Int) {
-        self.quality += quantity
-        
-        guard self.quality >= 0 else {
-            self.quality = 0
-            return
-        }
+    public func getQuality() -> Int {
+        return self.quality
     }
     
-    public func updateSellIn(by quantity: Int) {
-        self.sellIn += quantity
+    public func setQuality(_ quality:Int) {
+        self.quality = quality
     }
 }

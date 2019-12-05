@@ -14,65 +14,26 @@ public class GildedRose {
         self.items = items
     }
     
-    fileprivate func updateQualityOf(_ item: Item) {
-        
-        if (item.name != "Aged Brie" && item.name != "Backstage passes to a TAFKAL80ETC concert") {
-            if (item.quality > 0) {
-                if (item.name != "Sulfuras, Hand of Ragnaros") {
-                    if (item.name != "Conjured Mana Cake") {
-                        item.updateQuality(by: -1)
-                    } else {
-                        item.updateQuality(by: -2)
-                    }
-                }
+    fileprivate func updateQualityOf(_ item: QualityChanging) {
+        item.updateQuality()
+    }
+    
+    fileprivate func updateSellInOf(_ item: Sellable) {
+        item.updateSellIn(by: -1)
+    }
+    
+    public func updateQuality() {
+        for item in items {
+            //print("\(#file) \(#function) \(#line): itemDescription: \(item.description)")
+            
+            if let qualityChangingItem = item as? QualityChanging {
+                updateQualityOf(qualityChangingItem)
             }
-        } else {
-            if (item.quality < 50) {
-                item.updateQuality(by: 1)
-                
-                if (item.name == "Backstage passes to a TAFKAL80ETC concert") {
-                    if (item.sellIn < 11) {
-                        if (item.quality < 50) {
-                            item.updateQuality(by: 1)
-                        }
-                    }
-                    
-                    if (item.sellIn < 6) {
-                        if (item.quality < 50) {
-                            item.updateQuality(by: 1)
-                        }
-                    }
-                }
-            }
-        }
-        
-        if (item.name != "Sulfuras, Hand of Ragnaros") {
-            item.updateSellIn(by: -1)
-        }
-        
-        if (item.sellIn < 0) {
-            if (item.name != "Aged Brie") {
-                if (item.name != "Backstage passes to a TAFKAL80ETC concert") {
-                    if (item.quality > 0) {
-                        if (item.name != "Sulfuras, Hand of Ragnaros") {
-                            item.updateQuality(by: -1)
-                        }
-                    }
-                } else {
-                    item.quality = 0
-                }
-            } else {
-                if (item.quality < 50) {
-                    item.updateQuality(by: 1)
-                }
+            
+            if let sellableItem = item as? Sellable {
+                updateSellInOf(sellableItem)
             }
         }
     }
     
-    public func updateQuality() {
-        
-        for item in items {
-            updateQualityOf(item)
-        }
-    }
 }

@@ -31,7 +31,14 @@ class GildedRoseTests: XCTestCase {
     let conjuredItem2 = Item(name: "Conjured Mana Cake", sellIn: 0, quality:50)
     let conjuredItem3 = Item(name: "Conjured Mana Cake", sellIn: 1, quality: 1)
     
+    let good1 = Good(name: "Good1", sellIn: 1, quality: 5)
+    let legendaryItem = LegendaryItem(name: "Sulfuras", sellIn: 0, quality: 80)
+    let increasingQualityItem = IncreasingQualityItem(name: "Aged Brie", sellIn: 2, quality: 10)
+    let backStagePass = Ticket(name: "Backstagepass", sellIn: 1, quality: 1)
+    
     var items: [Item] = []
+    
+    var items2: [Item] = []
     
     override func setUp() {
         super.setUp()
@@ -52,6 +59,8 @@ class GildedRoseTests: XCTestCase {
                  conjuredItem1,
                  conjuredItem2,
                  conjuredItem3]
+        
+        items2 = [normalItem, good1, legendaryItem, increasingQualityItem, backStagePass]
         
         app  = GildedRose(items: items)
     }
@@ -178,4 +187,50 @@ class GildedRoseTests: XCTestCase {
         XCTAssertGreaterThanOrEqual(app.items[15].quality, 0)
     }
     
+    // MARK: Good
+    func testGood_IsAnItem() {
+        let item = Item(name: "Good1", sellIn: 1, quality: 5)
+        XCTAssertEqual(item.description, items2[1].description)
+    }
+    
+    func testGood_IsSellable() {
+        good1.updateSellIn(by: -1)
+        XCTAssertEqual(items2[1].sellIn, 0)
+    }
+    
+    // MARK: LegendaryItem
+    func testLegendaryItem_IsAnItem() {
+        let item = Item(name: "Sulfuras", sellIn: 0, quality: 80)
+        XCTAssertEqual(item.description, items2[2].description)
+    }
+    
+    func testGood_IsNotSellable() {
+        if let _ = legendaryItem as? Sellable {
+            XCTAssertFalse(false)
+        } else {
+            XCTAssertTrue(true)
+        }
+    }
+    
+    // MARK: Increasing Quality Item
+    func testIncreasingQualityItem_IsAnItem() {
+        let item = Item(name: "Aged Brie", sellIn: 2, quality: 10)
+        XCTAssertEqual(item.description, items2[3].description)
+    }
+    
+    func testIncreasingQualityItem_IsSellable() {
+        increasingQualityItem.updateSellIn(by: -1)
+        XCTAssertEqual(items2[3].sellIn, 1)
+    }
+    
+    // MARK: Ticket
+       func testTicket_IsAnItem() {
+           let item = Item(name: "Backstagepass", sellIn: 1, quality: 1)
+           XCTAssertEqual(item.description, items2[4].description)
+       }
+       
+       func testTicket_IsSellable() {
+           increasingQualityItem.updateSellIn(by: -1)
+           XCTAssertEqual(items2[4].sellIn, 1)
+       }
 }
