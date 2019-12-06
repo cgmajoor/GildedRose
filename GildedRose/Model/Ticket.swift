@@ -6,12 +6,12 @@
 //  Copyright © 2019 Lucium. All rights reserved.
 //
 
-public class Ticket: Item {
+public class Ticket: Good {
     
 }
 
-extension Ticket: QualityChanging {
-    func updateQuality() {
+extension Ticket {
+    override func updateQuality() {
         if 6...10 ~= self.sellIn {
             self.setQuality(self.quality + 2)
         } else if 1...5 ~= self.sellIn {
@@ -22,11 +22,5 @@ extension Ticket: QualityChanging {
             self.setQuality(self.quality + 1)
         }
         self.checkQualityRange(between: 0, and: 50)
-    }
-}
-
-extension Ticket: Sellable {
-    func updateSellIn(by quantity: Int) {
-        self.sellIn += quantity
     }
 }

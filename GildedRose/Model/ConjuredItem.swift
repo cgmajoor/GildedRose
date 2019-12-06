@@ -6,12 +6,12 @@
 //  Copyright © 2019 Lucium. All rights reserved.
 //
 
-public class ConjuredItem: Item {
+public class ConjuredItem: Good {
     
 }
 
-extension ConjuredItem: QualityChanging {
-    func updateQuality() {
+extension ConjuredItem {
+    override func updateQuality() {
         if self.sellIn < 0 {
             self.setQuality(self.quality - 4)
         } else{
@@ -21,8 +21,3 @@ extension ConjuredItem: QualityChanging {
     }
 }
 
-extension ConjuredItem: Sellable {
-    func updateSellIn(by quantity: Int) {
-        self.sellIn += quantity
-    }
-}

@@ -20,6 +20,18 @@ extension Good: QualityChanging {
         }
         self.checkQualityRange(between: 0, and: 50)
     }
+    
+    func checkQualityRange(between lowerRange:Int, and upperRange: Int){
+           guard self.quality >= 0 else {
+               self.setQuality(0)
+               return
+           }
+           
+           guard self.quality <= 50 else {
+               self.setQuality(50)
+               return
+           }
+       }
 }
 
 extension Good: Sellable {
