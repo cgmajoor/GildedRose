@@ -12,7 +12,7 @@ public class ConjuredItem: Good {
 
 extension ConjuredItem {
     override func updateQuality() {
-        if self.sellIn < 0 {
+        if self.sellIn <= 0 {
             self.setQuality(self.quality - 4)
         } else{
             self.setQuality(self.quality - 2)
