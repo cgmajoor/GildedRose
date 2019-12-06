@@ -5,8 +5,9 @@
 //  Created by Ceren Gazioglu Majoor on 05/12/2019.
 //  Copyright © 2019 Lucium. All rights reserved.
 //
+import Foundation
 
-protocol Sellable {
+@objc protocol Sellable {
     func updateSellIn(by quantity: Int)
 }
 

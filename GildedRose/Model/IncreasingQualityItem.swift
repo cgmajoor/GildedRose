@@ -6,12 +6,12 @@
 //  Copyright © 2019 Lucium. All rights reserved.
 //
 
-public class IncreasingQualityItem: Item {
+public class IncreasingQualityItem: Good {
     
 }
 
-extension IncreasingQualityItem: QualityChanging {
-    func updateQuality() {
+extension IncreasingQualityItem {
+    override func updateQuality() {
         if self.sellIn <= 0 {
             self.setQuality(self.quality + 2)
         } else {
@@ -21,8 +21,3 @@ extension IncreasingQualityItem: QualityChanging {
     }
 }
 
-extension IncreasingQualityItem: Sellable {
-    func updateSellIn(by quantity: Int) {
-        self.sellIn += quantity
-    }
-}
