@@ -13,7 +13,7 @@ And find the original code [here](https://github.com/emilybache/GildedRose-Refac
 ## Clone and setup 
 - Open Terminal.
 - Change the directory to where you want to clone the project to.
-- Write 'git clone https://github.com/cgmajoor/GildedRose.git' and **Enter**
+- Write  `git clone https://github.com/cgmajoor/GildedRose.git` and **Enter**
 
 ## My Approach
 - I first read the [GildedRoseRequirements.txt](https://github.com/emilybache/GildedRose-Refactoring-Kata/blob/master/GildedRoseRequirements.txt), the [ReadMe.md](https://github.com/emilybache/GildedRose-Refactoring-Kata/blob/master/README.md) on EmilyBache's GitHub.
@@ -27,7 +27,7 @@ And find the original code [here](https://github.com/emilybache/GildedRose-Refac
 - Added a test to check the Conjured Item behavior when the sell by date has passed and that its quality is never negative.
 - Started refactoring.
 - Extraction of method that is acting on one item from the iteration on all items.
-- Simplified 'item.quality = item.quality - item.quality' into 'item.quality = 0' for readibility
+- Simplified  `item.quality = item.quality - item.quality ` into  `item.quality = 0 ` for readibility
 -
 
 ## Challenges
