@@ -19,7 +19,7 @@ extension LegendaryItem {
         }
     }
     
-    public func getQuality() -> Int {
+    func getQuality() -> Int {
         self.checkQuality(self.quality)
         return self.quality
     }
