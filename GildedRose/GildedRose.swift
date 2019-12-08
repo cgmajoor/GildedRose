@@ -22,7 +22,7 @@ public class GildedRose {
         item.updateSellIn(by: -1)
     }
     
-    public func updateQuality() {
+    func updateQuality() {
         for item in items {
             
             if let qualityChangingItem = item as? QualityChanging {

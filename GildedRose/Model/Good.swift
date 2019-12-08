@@ -23,21 +23,21 @@ public class Good: Item {
         }
     }
     
-    public func getQuality() -> Int {
+    func getQuality() -> Int {
         self.checkQualityRange(self.quality)
         return self.quality
     }
     
-    public func setQuality(_ quality:Int) {
+    func setQuality(_ quality:Int) {
         self.quality = quality
         self.checkQualityRange(quality)
     }
     
-    public func getSellIn() -> Int {
+    func getSellIn() -> Int {
         return self.sellIn
     }
     
-    public func setSellIn(_ value: Int) {
+    func setSellIn(_ value: Int) {
         self.sellIn = value
     }
 }
