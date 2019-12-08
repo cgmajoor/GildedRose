@@ -205,9 +205,18 @@ class GildedRoseTests: XCTestCase {
         XCTAssertEqual(items2[1].sellIn, 0)
     }
     
+    func testGood_MaxQualityIsFifty() {
+        XCTAssertEqual(Good.maxQuality, 50)
+    }
+    
     func testGood_CannotSetQualityHigherThanMaxQuality() {
         good.setQuality(51)
-        XCTAssertEqual(good.getQuality(), 50)
+        XCTAssertEqual(good.getQuality(), Good.maxQuality)
+    }
+    
+    func testGood_SetSellIn() {
+        good.setSellIn(0)
+        XCTAssertEqual(good.getSellIn(), 0)
     }
     
     // MARK: LegendaryItem
@@ -223,14 +232,14 @@ class GildedRoseTests: XCTestCase {
             XCTAssertTrue(true)
         }
     }
-    
-    func testLegendaryItem_MaxQualityIsEighty() {
-        XCTAssertEqual(LegendaryItem.maxQuality, 80)
+
+    func testLegendaryItem_FixedQualityIsEighty() {
+        XCTAssertEqual(LegendaryItem.fixedQuality, 80)
     }
     
-    func testLegendaryItem_GetQualitySetsQualityBackToLimits() {
+    func testLegendaryItem_GetQualityReturnesItsFixedQuality() {
         let wrongQualitySulfuras = LegendaryItem(name: "Wrong Quality Sulfuras", sellIn: 0, quality: 81)
-        XCTAssertEqual(wrongQualitySulfuras.getQuality(), LegendaryItem.maxQuality)
+        XCTAssertEqual(wrongQualitySulfuras.getQuality(), LegendaryItem.fixedQuality)
     }
     
     // MARK: Increasing Quality Item

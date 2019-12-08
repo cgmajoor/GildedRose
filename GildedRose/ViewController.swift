@@ -12,8 +12,6 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
 
         let items = [
             Good(name: "+5 Dexterity Vest", sellIn: 10, quality: 20),
@@ -32,8 +30,7 @@ class ViewController: UIViewController {
         if (CommandLine.argc > 1) {
             days = Int(CommandLine.arguments[1])! + 1
         }
-
-
+        
         for i in 0..<days {
             print("-------- day \(i) --------");
             print("name, sellIn, quality");
@@ -45,7 +42,6 @@ class ViewController: UIViewController {
         }
 
     }
-
 
 }
 
