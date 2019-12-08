@@ -13,11 +13,10 @@ public class IncreasingQualityItem: Good {
 extension IncreasingQualityItem {
     override func updateQuality() {
         if self.sellIn <= 0 {
-            self.setQuality(self.quality + 2)
+            self.setQuality(self.getQuality() + 2)
         } else {
-            self.setQuality(self.quality + 1)
+            self.setQuality(self.getQuality() + 1)
         }
-        self.checkQualityRange(between: 0, and: 50)
     }
 }
 

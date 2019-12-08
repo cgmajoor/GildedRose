@@ -71,10 +71,6 @@ class GildedRoseTests: XCTestCase {
         app  = GildedRose(items: items)
     }
     
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-    
     func testExample() {
         XCTAssertTrue(true, "True passes.")
     }
@@ -209,18 +205,32 @@ class GildedRoseTests: XCTestCase {
         XCTAssertEqual(items2[1].sellIn, 0)
     }
     
+    func testGood_CannotSetQualityHigherThanMaxQuality() {
+        good.setQuality(51)
+        XCTAssertEqual(good.getQuality(), 50)
+    }
+    
     // MARK: LegendaryItem
     func testLegendaryItem_IsAnItem() {
         let item = Item(name: "Sulfuras", sellIn: 0, quality: 80)
         XCTAssertEqual(item.description, items2[2].description)
     }
     
-    func testGood_IsNotSellable() {
+    func testLegendaryItem_IsNotSellable() {
         if let _ = legendaryItem as? Sellable {
             XCTAssertFalse(false)
         } else {
             XCTAssertTrue(true)
         }
+    }
+    
+    func testLegendaryItem_MaxQualityIsEighty() {
+        XCTAssertEqual(LegendaryItem.maxQuality, 80)
+    }
+    
+    func testLegendaryItem_GetQualitySetsQualityBackToLimits() {
+        let wrongQualitySulfuras = LegendaryItem(name: "Wrong Quality Sulfuras", sellIn: 0, quality: 81)
+        XCTAssertEqual(wrongQualitySulfuras.getQuality(), LegendaryItem.maxQuality)
     }
     
     // MARK: Increasing Quality Item

@@ -24,13 +24,3 @@ extension Item: CustomStringConvertible {
         return self.name + ", " + String(self.sellIn) + ", " + String(self.quality);
     }
 }
-
-extension Item {
-    public func getQuality() -> Int {
-        return self.quality
-    }
-    
-    public func setQuality(_ quality:Int) {
-        self.quality = quality
-    }
-}
