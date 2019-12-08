@@ -9,5 +9,4 @@ import Foundation
 
 @objc protocol QualityChanging {
     func updateQuality()
-    func checkQualityRange(between lowerRange: Int, and upperRange: Int)
 }

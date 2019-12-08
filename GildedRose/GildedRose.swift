@@ -24,7 +24,6 @@ public class GildedRose {
     
     public func updateQuality() {
         for item in items {
-            //print("\(#file) \(#function) \(#line): itemDescription: \(item.description)")
             
             if let qualityChangingItem = item as? QualityChanging {
                 updateQualityOf(qualityChangingItem)

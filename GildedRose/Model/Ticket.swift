@@ -13,14 +13,13 @@ public class Ticket: Good {
 extension Ticket {
     override func updateQuality() {
         if 6...10 ~= self.sellIn {
-            self.setQuality(self.quality + 2)
+            self.setQuality(self.getQuality() + 2)
         } else if 1...5 ~= self.sellIn {
-            self.setQuality(self.quality + 3)
+            self.setQuality(self.getQuality() + 3)
         } else if sellIn <= 0 {
             self.setQuality(0)
         } else {
-            self.setQuality(self.quality + 1)
+            self.setQuality(self.getQuality() + 1)
         }
-        self.checkQualityRange(between: 0, and: 50)
     }
 }
