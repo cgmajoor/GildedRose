@@ -7,15 +7,16 @@
 //
 
 public class IncreasingQualityItem: Good {
-    
+    override class var qualityChangeNormal:Int { return super.qualityChangeNormal * (-1) }
+    override class var qualityChangeSellInPassed:Int { return super.qualityChangeSellInPassed * (-1) }
 }
 
 extension IncreasingQualityItem {
     override func updateQuality() {
-        if self.sellIn <= 0 {
-            self.setQuality(self.getQuality() + 2)
+        if self.sellInDatePassed() {
+            self.setQuality(self.getQuality() + IncreasingQualityItem.qualityChangeSellInPassed)
         } else {
-            self.setQuality(self.getQuality() + 1)
+            self.setQuality(self.getQuality() + IncreasingQualityItem.qualityChangeNormal)
         }
     }
 }
