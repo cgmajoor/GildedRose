@@ -10,6 +10,8 @@
 public class Good: Item {
     static let minQuality = 0
     static let maxQuality = 50
+    class var qualityChangeNormal:Int { return -1 }
+    class var qualityChangeSellInPassed:Int { return -2 }
     
     private func checkQualityRange(_ quality: Int, between minQuality:Int = Good.minQuality, and maxQuality: Int = Good.maxQuality) {
         guard quality >= minQuality else {
@@ -43,11 +45,15 @@ public class Good: Item {
 }
 
 extension Good: QualityChanging {
+    func sellInDatePassed() -> Bool {
+        return self.sellIn <= 0
+    }
+    
     func updateQuality() {
-        if self.sellIn <= 0 {
-            self.setQuality(self.getQuality() - 2)
+        if sellInDatePassed() {
+            self.setQuality(self.getQuality() + Good.qualityChangeSellInPassed)
         } else{
-            self.setQuality(self.getQuality() - 1)
+            self.setQuality(self.getQuality() + Good.qualityChangeNormal)
         }
     }
 }
